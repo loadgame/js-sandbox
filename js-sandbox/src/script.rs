@@ -113,7 +113,7 @@ impl Script {
 		self.call_impl(fn_name, args.to_string())
 	}
 
-	fn call_impl(&mut self, fn_name: &str, json_args: String) -> Result<JsValue, JsError> {
+	pub(crate) fn call_impl(&mut self, fn_name: &str, json_args: String) -> Result<JsValue, JsError> {
 		// Note: ops() is required to initialize internal state
 		// Wrap everything in scoped block
 
@@ -131,6 +131,8 @@ impl Script {
 			}})()"
 		)
 		.into();
+
+		println!(js_code); //for testing
 
 		if let Some(timeout) = self.timeout {
 			let handle = self.runtime.v8_isolate().thread_safe_handle();
