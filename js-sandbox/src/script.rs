@@ -132,7 +132,7 @@ impl Script {
 		)
 		.into();
 
-		println!(js_code.as_str()); //for testing
+		println!(js_code.as_str().to_string()); //for testing
 
 		if let Some(timeout) = self.timeout {
 			let handle = self.runtime.v8_isolate().thread_safe_handle();
