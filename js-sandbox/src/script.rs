@@ -116,7 +116,7 @@ impl Script {
 	pub(crate) fn call_impl(&mut self, fn_name: &str, json_args: String) -> Result<JsValue, JsError> {
 		// Note: ops() is required to initialize internal state
 		// Wrap everything in scoped block
-		println!("{}", json_args);
+
 		// 'undefined' will cause JSON serialization error, so it needs to be treated as null
 		let js_code = format!(
 			"(async () => {{
@@ -131,8 +131,6 @@ impl Script {
 			}})()"
 		)
 		.into();
-
-		println!("{}",String::from(js_code.as_str())); //for testing
 
 		if let Some(timeout) = self.timeout {
 			let handle = self.runtime.v8_isolate().thread_safe_handle();
